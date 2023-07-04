@@ -20,5 +20,57 @@
         <li>Allow users to remove a movie from their list of favorites</li>
         <li>Allow existing users to deregister</li>
     </ul>
+    <table border="1">
+        <tr>
+            <th>Request</th>
+            <th>URL</th>
+            <th>Response</th>
+        </tr>
+        <tr>
+            <td>Get List of All Movies</td>
+            <td>/movies</td>
+            <td>Return a list of all movies in external database</td>
+        </tr>
+        <tr>
+            <td>Get Data of Single Movie</td>
+            <td>/movies/:title</td>
+            <td>Return data on a single movie by title</td>
+        </tr>
+        <tr>
+            <td>Get Genre Data</td>
+            <td>/movies/genres/:genre</td>
+            <td>Return data on a single genre by name</td>
+        </tr>
+        <tr>
+            <td>Get Director Data</td>
+            <td>/movies/directors/:director</td>
+            <td>Return data on a single director by name</td>
+        </tr>
+        <tr>
+            <td>Post New User</td>
+            <td>/users</td>
+            <td>Register new user</td>
+        </tr>
+        <tr>
+            <td>Put New User Username</td>
+            <td>/users/:username</td>
+            <td>Update user's username</td>
+        </tr>
+        <tr>
+            <td>Post New Movie to User Favorites</td>
+            <td>/users/:username/movies/:favorites</td>
+            <td>Add movie to a user's list of favorites</td>
+        </tr>
+        <tr>
+            <td>Delete Movie From User Favorites</td>
+            <td>/users/:username/movies/:favorites</td>
+            <td>Remove a movie from a user's list of favorites</td>
+        </tr>
+        <tr>
+            <td>Delete Existing User</td>
+            <td>/users/:username</td>
+            <td>Remove existing user</td>
+        </tr>
+    </table>
 </body>
 </html>
