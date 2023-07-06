@@ -39,14 +39,28 @@ app.get('/movies/:Title', (req, res) => {
     });
 });
 
-/*Get data on a single genre by name*/
-app.get('/movies/genres/:genre', (req, res) => {
-    res.send('Successful GET request returning data on a single genre by name');
+/*Get data on a single genre by name****************/
+app.get('/movies/Genre/:Name', (req, res) => {
+    Movies.findOne({ Name: req.params.Name })
+    .then((genre) => {
+      res.json(genre);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
-/*Get data on a single director by name*/
-app.get('/movies/directors/:Director', (req, res) => {
-    res.send('Successful GET request returning data on a single director by name');
+/*Get data on a single director by name*******************/
+app.get('/movies/Directors/:Name', (req, res) => {
+    Movies.findOne({ Name: req.params.Name })
+    .then((movie) => {
+      res.json(movie);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 /*Register new user*/
@@ -113,9 +127,26 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
      });
 });
 
-/*Remove movie from user favorites*/
+/*Remove movie from user favorites*****************/
 app.delete('/users/:Username/movies/:MovieID', (req, res) => {
-    res.send('Successful DELETE request removing a a movie from a user\'s list of favorites');
+    Users.findOneAndUpdate(
+        { Username: req.params.Username },
+        {
+          $pull: { FavoriteMovies: req.params.MovieID }
+        },
+        { new: true }
+      )
+        .then((updatedUser) => {
+          if (!updatedUser) {
+            return res.status(404).send("Error: User doesn't exist");
+          } else {
+            res.json(updatedUser);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send('Error: ' + err);
+        });
 });
 
 /*Remove existing user by username*/
