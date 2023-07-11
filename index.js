@@ -8,8 +8,8 @@ const { check, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
-const Movies=Models.Movie;
-const Users=Models.User;
+const Movies = Models.Movie;
+const Users = Models.User;
 
 app.use(express.static('public'));
 app.use(express.json());
